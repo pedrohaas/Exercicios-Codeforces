@@ -1,0 +1,1 @@
+<h1>Exercícios feitos para uma simulação da Fase Regional de 2023 da Maratona SBC de Programação, contém tanto resoluções próprias, quanto resoluções estudadas a partir do seguinte repositório: https://github.com/LeandroPinaa/ICPC-Brazil-SubRegional-2023/tree/main

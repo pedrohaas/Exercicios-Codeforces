@@ -1,5 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define NMAX 1000005
+#define int long long
+#define faster ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+int frequencia[NMAX];
+int prox[NMAX];
 
 int retira(int num) {
     string s = to_string(num);
@@ -10,22 +16,31 @@ int retira(int num) {
     return ans;
 }
 
-int main() {
-
-    int n, k, ans = 0;
+int32_t main() { faster
+    int n, k, ans = 0, maior = 0;
     cin>>n>>k;
-    vector<int> vec(n);
-    for (int i = 0; i < n; i++)
-        cin>>vec[i];
-    sort(vec.rbegin(), vec.rend());
-    for (int i = 0; i < k; i++) {
-        ans = retira(vec[0]);
-        //cout << ans << endl;
-        vec[0] -= ans;
-        if (vec[0] < vec[1]) sort(vec.rbegin(), vec.rend());
+
+    fill(frequencia, frequencia + NMAX, 0);
+
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin>>x;
+        maior = max(maior, x);
+        frequencia[x]++;
+    }
+    
+    for (int i = 0; i <= maior; i++) {
+        prox[i] = i - retira(i);
     }
 
-    cout << ans << endl;
-    
+    for (int i = maior; i >= 0; i--) {
+        k -= frequencia[i];
+        frequencia [ prox[i] ] += frequencia[i];
+        if (k<=0) {
+            ans = i; break;
+        }
+    }
+
+    cout << retira(ans) << endl;
     return 0;
 }
